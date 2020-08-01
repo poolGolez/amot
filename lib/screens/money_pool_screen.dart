@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/current_portfolio.dart';
 
 class MoneyPoolScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final portfolio = Provider.of<CurrentPortfolio>(context);
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Samgyupsal'),
+        title: Text(portfolio.title),
       ),
       body: Container(
         height: double.infinity,
@@ -31,7 +36,7 @@ class MoneyPoolScreen extends StatelessWidget {
                   ),
                   Expanded(
                     child: Text(
-                      (3691.36).toStringAsFixed(2),
+                      portfolio.total.toStringAsFixed(2),
                       textAlign: TextAlign.end,
                       style: const TextStyle(
                         fontSize: 20,
