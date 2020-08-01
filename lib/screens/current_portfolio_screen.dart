@@ -5,6 +5,8 @@ import '../providers/current_portfolio.dart';
 import '../widgets/current_portfolio_screen/portfolio_division_widget.dart';
 import '../widgets/current_portfolio_screen/portfolio_header.dart';
 
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+
 class CurrentPortfolioScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -33,9 +35,19 @@ class CurrentPortfolioScreen extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.attach_money),
-        onPressed: null,
+      floatingActionButton: SpeedDial(
+        backgroundColor: Theme.of(context).accentColor,
+        child: Icon(Icons.add),
+        children: <SpeedDialChild>[
+          SpeedDialChild(
+            backgroundColor: Theme.of(context).accentColor,
+            child: Icon(Icons.receipt),
+          ),
+          SpeedDialChild(
+            backgroundColor: Theme.of(context).accentColor,
+            child: Icon(Icons.person),
+          )
+        ],
       ),
     );
   }
