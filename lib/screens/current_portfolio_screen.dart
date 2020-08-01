@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../providers/current_portfolio.dart';
 
-class MoneyPoolScreen extends StatelessWidget {
+class CurrentPortfolioScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final portfolio = Provider.of<CurrentPortfolio>(context);

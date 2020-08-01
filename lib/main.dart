@@ -1,8 +1,8 @@
+import './screens/current_portfolio_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import './providers/current_portfolio.dart';
-import './screens/money_pool_screen.dart';
 
 void main() {
   runApp(AmotApp());
@@ -18,7 +18,7 @@ class AmotApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Amot',
         theme: ThemeData(primaryColor: Colors.teal),
-        home: MoneyPoolScreen(),
+        home: CurrentPortfolioScreen(),
       ),
     );
   }
