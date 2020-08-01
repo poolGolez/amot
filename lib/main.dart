@@ -18,9 +18,14 @@ class AmotApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Amot',
         theme: ThemeData(
-          primaryColor: Colors.teal,
-          accentColor: Colors.deepPurple
-        ),
+            primaryColor: Colors.teal,
+            accentColor: Colors.deepPurple,
+            buttonColor: Colors.deepPurple,
+            textTheme: TextTheme(
+              button: TextStyle(
+                fontSize: 18, color: Colors.red
+              ),
+            )),
         home: CurrentPortfolioScreen(),
       ),
     );

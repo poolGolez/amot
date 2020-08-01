@@ -10,6 +10,7 @@ class Portfolio {
   DateTime dateCreated = DateTime.now();
   List<Partaker> partakers = [];
   List<Expense> expenses = [];
+  List<ExpensePartakerEntry> _entries = [];
 
   Portfolio({
     @required this.title,
@@ -27,4 +28,22 @@ class Portfolio {
 
   // TODO: implementation
   PortfolioDivision get division => PortfolioDivision(this);
+
+  void splitExpense(Expense expense, List<Partaker> partakers) {
+    this.expenses.add(expense);
+    for (var partaker in partakers) {
+      final entry = ExpensePartakerEntry(expense: expense, partaker: partaker);
+      this._entries.add(entry);
+    }
+  }
+}
+
+class ExpensePartakerEntry {
+  final Expense expense;
+  final Partaker partaker;
+
+  ExpensePartakerEntry({
+    @required this.expense,
+    @required this.partaker,
+  });
 }
