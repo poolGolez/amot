@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/current_portfolio.dart';
-import '../widgets/current_portfolio_screen/portfolio_division.dart';
+import '../widgets/current_portfolio_screen/portfolio_division_widget.dart';
 import '../widgets/current_portfolio_screen/portfolio_header.dart';
 
 class CurrentPortfolioScreen extends StatelessWidget {
@@ -28,7 +28,7 @@ class CurrentPortfolioScreen extends StatelessWidget {
               child: PortfolioHeader(portfolio),
             ),
             Expanded(
-              child: PortfolioDivision(portfolio),
+              child: PortfolioDivisionWidget(portfolio.division),
             ),
           ],
         ),
