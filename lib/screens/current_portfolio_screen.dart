@@ -19,7 +19,7 @@ class CurrentPortfolioScreen extends StatelessWidget {
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        color: (Theme.of(context).primaryColor as MaterialColor)[100],
+        color: (Theme.of(context).primaryColor as MaterialColor)[50],
         child: Column(
           children: <Widget>[
             Container(
