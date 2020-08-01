@@ -14,8 +14,14 @@ class Portfolio {
   Portfolio({
     @required this.title,
     this.transactionDate,
-    this.partakers,
-  });
+  }) {
+    partakers = [
+      Partaker('Pool'),
+      Partaker('June'),
+      Partaker('Gid'),
+      Partaker('Chuckee'),
+    ];
+  }
 
   double get total => 15641.5;
 

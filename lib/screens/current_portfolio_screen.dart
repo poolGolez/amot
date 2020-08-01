@@ -1,3 +1,4 @@
+import 'package:amot/screens/add_expense_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -40,14 +41,25 @@ class CurrentPortfolioScreen extends StatelessWidget {
         child: Icon(Icons.add),
         children: <SpeedDialChild>[
           SpeedDialChild(
-            backgroundColor: Theme.of(context).accentColor,
-            child: Icon(Icons.receipt),
-          ),
+              backgroundColor: Theme.of(context).accentColor,
+              child: Icon(Icons.receipt),
+              onTap: () => promptAddExpenseDialog(context)),
           SpeedDialChild(
             backgroundColor: Theme.of(context).accentColor,
             child: Icon(Icons.person),
           )
         ],
+      ),
+    );
+  }
+
+  void promptAddExpenseDialog(ctx) {
+    Navigator.of(ctx).push(
+      MaterialPageRoute(
+        fullscreenDialog: true,
+        builder: (ctx) {
+          return AddExpenseScreen();
+        },
       ),
     );
   }

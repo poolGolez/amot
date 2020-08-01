@@ -1,7 +1,8 @@
-import 'package:amot/models/portfolio_division.dart';
 import 'package:flutter/foundation.dart';
 
+import '../models/partaker.dart';
 import '../models/portfolio.dart';
+import '../models/portfolio_division.dart';
 
 class CurrentPortfolio with ChangeNotifier {
   Portfolio portfolio;
@@ -11,6 +12,7 @@ class CurrentPortfolio with ChangeNotifier {
   }
 
   String get title => portfolio.title;
+  List<Partaker> get partakers => portfolio.partakers;
   double get total => portfolio.total;
   PortfolioDivision get division => portfolio.division;
 }
