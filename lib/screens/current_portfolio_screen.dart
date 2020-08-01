@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/current_portfolio.dart';
+import '../widgets/current_portfolio_screen/portfolio_division.dart';
+import '../widgets/current_portfolio_screen/portfolio_header.dart';
 
 class CurrentPortfolioScreen extends StatelessWidget {
   @override
@@ -23,40 +25,10 @@ class CurrentPortfolioScreen extends StatelessWidget {
               width: double.infinity,
               padding: EdgeInsets.all(10),
               color: Colors.white,
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: const Text(
-                      'Total Amount',
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Text(
-                      portfolio.total.toStringAsFixed(2),
-                      textAlign: TextAlign.end,
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              child: PortfolioHeader(portfolio),
             ),
             Expanded(
-              child: ListView.builder(
-                padding: EdgeInsets.all(10),
-                itemBuilder: (ctx, index) => Card(
-                  child: ListTile(
-                    title: Text('Paul'),
-                  ),
-                ),
-                itemCount: 20,
-              ),
+              child: PortfolioDivision(portfolio),
             ),
           ],
         ),
