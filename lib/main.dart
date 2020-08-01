@@ -11,6 +11,7 @@ class AmotApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Amot',
+      theme: ThemeData(primaryColor: Colors.teal),
       home: MoneyPoolScreen(),
     );
   }
