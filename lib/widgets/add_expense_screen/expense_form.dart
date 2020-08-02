@@ -1,8 +1,9 @@
-import 'package:amot/models/partaker.dart';
-import 'package:amot/providers/current_portfolio.dart';
 import 'package:amot/widgets/add_expense_screen/split_method_input.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../../models/partaker.dart';
+import '../../providers/current_portfolio.dart';
 
 class ExpenseForm extends StatefulWidget {
   @override
@@ -41,8 +42,7 @@ class _ExpenseFormState extends State<ExpenseForm> {
             decoration: InputDecoration(labelText: 'Name'),
           ),
           Expanded(
-              child: SplitMethodInput(
-                  portfolio, partakers, _setPartakers)),
+              child: SplitMethodInput(portfolio, partakers, _setPartakers)),
         ],
       ),
     );

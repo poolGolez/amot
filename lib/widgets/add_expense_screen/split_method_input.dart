@@ -1,7 +1,7 @@
-import 'package:amot/models/partaker.dart';
-import 'package:amot/models/portfolio.dart';
-import 'package:amot/providers/current_portfolio.dart';
 import 'package:flutter/material.dart';
+
+import '../../models/partaker.dart';
+import '../../providers/current_portfolio.dart';
 
 class SplitMethodInput extends StatelessWidget {
   SplitMethod splitMethod = SplitMethod.EQUAL;

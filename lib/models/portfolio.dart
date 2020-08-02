@@ -10,40 +10,33 @@ class Portfolio {
   DateTime dateCreated = DateTime.now();
   List<Partaker> partakers = [];
   List<Expense> expenses = [];
-  List<ExpensePartakerEntry> _entries = [];
+  List<ExpenseAllotmentPlan> expenseAllotmentPlans = [];
 
-  Portfolio({
-    @required this.title,
-    this.transactionDate,
-  }) {
-    partakers = [
-      Partaker('Pool'),
-      Partaker('June'),
-      Partaker('Gid'),
-      Partaker('Chuckee'),
-    ];
-  }
+  Portfolio({@required this.title, this.transactionDate, this.partakers});
 
-  double get total => 15641.5;
+  double get total =>
+      expenses.fold(0, (total, expense) => total + expense.amount);
+
+  List<ExpenseAllotmentPlan> get expenseAllocation =>
+      [...expenseAllotmentPlans];
 
   // TODO: implementation
   PortfolioDivision get division => PortfolioDivision(this);
 
   void splitExpense(Expense expense, List<Partaker> partakers) {
     this.expenses.add(expense);
-    for (var partaker in partakers) {
-      final entry = ExpensePartakerEntry(expense: expense, partaker: partaker);
-      this._entries.add(entry);
-    }
+
+    final plan = ExpenseAllotmentPlan(expense: expense, partakers: partakers);
+    this.expenseAllotmentPlans.add(plan);
   }
 }
 
-class ExpensePartakerEntry {
+class ExpenseAllotmentPlan {
   final Expense expense;
-  final Partaker partaker;
+  final List<Partaker> partakers;
 
-  ExpensePartakerEntry({
+  ExpenseAllotmentPlan({
     @required this.expense,
-    @required this.partaker,
+    @required this.partakers,
   });
 }
