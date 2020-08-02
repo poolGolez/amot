@@ -3,14 +3,27 @@ import 'package:flutter/material.dart';
 import '../../models/partaker.dart';
 import '../../providers/current_portfolio.dart';
 
-class SplitMethodInput extends StatelessWidget {
+class SplitMethodInput extends StatefulWidget {
+  final CurrentPortfolio portfolio;
+  final Function setPartakers;
+
+  SplitMethodInput(this.portfolio, this.setPartakers);
+
+  @override
+  _SplitMethodInputState createState() => _SplitMethodInputState();
+}
+
+class _SplitMethodInputState extends State<SplitMethodInput> {
   SplitMethod splitMethod = SplitMethod.EQUAL;
-
-  CurrentPortfolio portfolio;
   List<Partaker> partakers;
-  Function setPartakers;
 
-  SplitMethodInput(this.portfolio, this.partakers, this.setPartakers);
+  @override
+  void didChangeDependencies() {
+    if (partakers == null) {
+      partakers = this.widget.portfolio.partakers;
+    }
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,26 +46,27 @@ class SplitMethodInput extends StatelessWidget {
               children: <Widget>[
                 RadioListTile(
                   title: Text('Split evenly'),
-                  value: portfolio.partakers.length == partakers.length
+                  value: widget.portfolio.partakers.length == partakers.length
                       ? SplitMethod.EQUAL
                       : SplitMethod.CUSTOM,
                   groupValue: splitMethod,
-                  onChanged: (v) => setPartakers(portfolio.partakers),
+                  onChanged: (v) =>
+                      setState(() => partakers = widget.portfolio.partakers),
                 ),
                 RadioListTile(
                   title: Text('Only the following people:'),
-                  value: portfolio.partakers.length != partakers.length
+                  value: widget.portfolio.partakers.length != partakers.length
                       ? SplitMethod.EQUAL
                       : SplitMethod.CUSTOM,
                   groupValue: splitMethod,
-                  onChanged: (v) => setPartakers(<Partaker>[]),
+                  onChanged: (v) => setState(() => partakers = <Partaker>[]),
                 ),
                 Expanded(
                   child: ListView.builder(
                     padding: EdgeInsets.only(left: 50),
-                    itemCount: portfolio.partakers.length,
+                    itemCount: widget.portfolio.partakers.length,
                     itemBuilder: (ctx, index) {
-                      final targetPartaker = portfolio.partakers[index];
+                      final targetPartaker = widget.portfolio.partakers[index];
                       return CheckboxListTile(
                         dense: true,
                         value: partakers.contains(targetPartaker),
@@ -63,7 +77,9 @@ class SplitMethodInput extends StatelessWidget {
                           } else {
                             newPartakers.remove(targetPartaker);
                           }
-                          setPartakers(newPartakers);
+                          setState(() {
+                            partakers = newPartakers;
+                          });
                         },
                         title: Text(
                           targetPartaker.name,

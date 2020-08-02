@@ -73,7 +73,6 @@ class _ExpenseFormState extends State<ExpenseForm> {
               padding: const EdgeInsets.symmetric(vertical: 20.0),
               child: SplitMethodInput(
                 portfolio,
-                partakers,
                 _setPartakers,
               ),
             ),
