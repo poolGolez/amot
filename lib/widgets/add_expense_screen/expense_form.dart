@@ -1,3 +1,4 @@
+import 'package:amot/models/expense.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -13,23 +14,17 @@ class ExpenseForm extends StatefulWidget {
 class _ExpenseFormState extends State<ExpenseForm> {
   final formKey = GlobalKey<FormState>();
 
-  String name;
-  List<Partaker> partakers = [];
+  String _name;
+  double _amount;
+  List<Partaker> _partakers;
   CurrentPortfolio portfolio;
 
   @override
   void didChangeDependencies() {
     if (portfolio == null) {
       portfolio = Provider.of<CurrentPortfolio>(context);
-      partakers = [...portfolio.partakers];
     }
     super.didChangeDependencies();
-  }
-
-  void _setPartakers(List<Partaker> value) {
-    setState(() {
-      partakers = value;
-    });
   }
 
   @override
@@ -45,7 +40,7 @@ class _ExpenseFormState extends State<ExpenseForm> {
                   color: Theme.of(context).primaryColor),
             ),
             keyboardType: TextInputType.number,
-            onSaved: (value) => name = value,
+            onSaved: (value) => _amount = double.parse(value),
             validator: (value) {
               if (value == null || value.trim().length == 0) {
                 return 'Amount is required';
@@ -67,13 +62,22 @@ class _ExpenseFormState extends State<ExpenseForm> {
               labelText: 'Name',
               icon: Icon(Icons.label, color: Theme.of(context).primaryColor),
             ),
+            onSaved: (value) => _name = value,
           ),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 20.0),
               child: SplitMethodInput(
                 portfolio,
-                _setPartakers,
+                initialValue: portfolio.partakers,
+                onSaved: (value) => _partakers = value,
+                validator: (value) {
+                  if (value.length == 0) {
+                    return 'Select at least one partaker for the expense';
+                  }
+
+                  return null;
+                },
               ),
             ),
           ),
@@ -95,9 +99,11 @@ class _ExpenseFormState extends State<ExpenseForm> {
     if (!formKey.currentState.validate()) {
       return;
     }
-    print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXx");
-    print("Saving");
-    print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXx");
-    // formKey.currentState.save();
+
+    formKey.currentState.save();
+    final expense = Expense(name: _name, amount: _amount);
+    portfolio.splitExpense(expense, _partakers);
+
+    Navigator.of(context).pop();
   }
 }
