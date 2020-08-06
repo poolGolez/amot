@@ -40,46 +40,60 @@ class _CurrentPortfolioScreenState extends State<CurrentPortfolioScreen> {
               color: Colors.white,
               child: PortfolioHeader(portfolio),
             ),
-            Container(
-              height: 40,
-              padding: const EdgeInsets.all(5.0),
-              child: Row(children: <Widget>[
-                RaisedButton(
-                  onPressed: view == PortfolioView.PARTAKER
-                      ? null
-                      : () => setState(() => view = PortfolioView.PARTAKER),
-                  child: Text('Partakers'),
-                  shape: RoundedRectangleBorder(
-                    borderRadius:
-                        BorderRadius.horizontal(left: Radius.circular(5)),
-                  ),
-                  elevation: 10,
-                  color: Colors.white,
-                  textColor: Theme.of(context).primaryColor,
-                  disabledElevation: 0,
-                  disabledColor: Theme.of(context).primaryColor,
-                  disabledTextColor: Colors.white,
-                ),
-                RaisedButton(
-                  onPressed: view == PortfolioView.EXPENSE
-                      ? null
-                      : () => setState(() => view = PortfolioView.EXPENSE),
-                  child: Text('Expenses'),
-                  shape: RoundedRectangleBorder(
-                    borderRadius:
-                        BorderRadius.horizontal(right: Radius.circular(5)),
-                  ),
-                  elevation: 6,
-                  color: Colors.white,
-                  textColor: Theme.of(context).primaryColor,
-                  disabledElevation: 0,
-                  disabledColor: Theme.of(context).primaryColor,
-                  disabledTextColor: Colors.white,
-                )
-              ]),
-            ),
             Expanded(
-              child: PortfolioDivisionWidget(portfolio.division),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                      padding: const EdgeInsets.only(right: 5.0),
+                      height: 50,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                          RaisedButton(
+                            onPressed: view == PortfolioView.PARTAKER
+                                ? null
+                                : () => setState(
+                                    () => view = PortfolioView.PARTAKER),
+                            child: Text('Partakers'),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.horizontal(
+                                  left: Radius.circular(5)),
+                            ),
+                            elevation: 10,
+                            color: Colors.white,
+                            textColor: Theme.of(context).primaryColor,
+                            disabledElevation: 0,
+                            disabledColor: Theme.of(context).primaryColor,
+                            disabledTextColor: Colors.white,
+                          ),
+                          RaisedButton(
+                            onPressed: view == PortfolioView.EXPENSE
+                                ? null
+                                : () => setState(
+                                    () => view = PortfolioView.EXPENSE),
+                            child: Text('Expenses'),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.horizontal(
+                                  right: Radius.circular(5)),
+                            ),
+                            elevation: 6,
+                            color: Colors.white,
+                            textColor: Theme.of(context).primaryColor,
+                            disabledElevation: 0,
+                            disabledColor: Theme.of(context).primaryColor,
+                            disabledTextColor: Colors.white,
+                          )
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: PortfolioDivisionWidget(portfolio.division),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),

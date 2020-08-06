@@ -57,11 +57,15 @@ class _PartakerCardWidgetState extends State<PartakerCardWidget> {
                   ],
                 ),
                 trailing: widget.entry.contributions.length == 0
-                    ? SizedBox(width: 25,)
+                    ? SizedBox(
+                        width: 25,
+                      )
                     : _expanded
                         ? Icon(Icons.expand_less)
                         : Icon(Icons.expand_more),
-                onTap: () => setState(() => _expanded = !_expanded),
+                onTap: widget.entry.contributions.length == 0
+                    ? null
+                    : () => setState(() => _expanded = !_expanded),
               ),
             ],
           ),

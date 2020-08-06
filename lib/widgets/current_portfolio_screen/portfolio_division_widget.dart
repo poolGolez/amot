@@ -11,7 +11,6 @@ class PortfolioDivisionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      padding: EdgeInsets.all(10),
       itemBuilder: (ctx, index) => PartakerCardWidget(division[index]),
       itemCount: division.length,
     );
