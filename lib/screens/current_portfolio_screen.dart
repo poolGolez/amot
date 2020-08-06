@@ -1,14 +1,13 @@
-import 'package:amot/models/portfolio.dart';
-import 'package:amot/screens/add_expense_screen.dart';
-import 'package:amot/widgets/current_portfolio_screen/portfolio_expenses_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/current_portfolio.dart';
+import '../screens/add_expense_screen.dart';
 import '../widgets/current_portfolio_screen/portfolio_division_widget.dart';
+import '../widgets/current_portfolio_screen/portfolio_expenses_widget.dart';
 import '../widgets/current_portfolio_screen/portfolio_header.dart';
-
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'add_partaker_screen.dart';
 
 enum PortfolioView { PARTAKER, EXPENSE }
 
@@ -92,7 +91,8 @@ class _CurrentPortfolioScreenState extends State<CurrentPortfolioScreen> {
                     Expanded(
                       child: view == PortfolioView.PARTAKER
                           ? PortfolioDivisionWidget(portfolio.division)
-                          : PortfolioExpensesWidget(portfolio.expenseAllocation),
+                          : PortfolioExpensesWidget(
+                              portfolio.expenseAllocation),
                     ),
                   ],
                 ),
@@ -115,6 +115,7 @@ class _CurrentPortfolioScreenState extends State<CurrentPortfolioScreen> {
             backgroundColor: Theme.of(context).accentColor,
             label: "Participant",
             child: Icon(Icons.person),
+            onTap: () => promptAddPartakerDialog(context),
           )
         ],
       ),
@@ -125,9 +126,16 @@ class _CurrentPortfolioScreenState extends State<CurrentPortfolioScreen> {
     Navigator.of(ctx).push(
       MaterialPageRoute(
         fullscreenDialog: true,
-        builder: (ctx) {
-          return AddExpenseScreen();
-        },
+        builder: (ctx) => AddExpenseScreen(),
+      ),
+    );
+  }
+
+  void promptAddPartakerDialog(ctx) {
+    Navigator.of(ctx).push(
+      MaterialPageRoute(
+        fullscreenDialog: true,
+        builder: (ctx) => AddPartakerScreen(),
       ),
     );
   }
