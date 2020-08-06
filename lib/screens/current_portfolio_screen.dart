@@ -1,5 +1,6 @@
 import 'package:amot/models/portfolio.dart';
 import 'package:amot/screens/add_expense_screen.dart';
+import 'package:amot/widgets/current_portfolio_screen/portfolio_expenses_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -89,7 +90,9 @@ class _CurrentPortfolioScreenState extends State<CurrentPortfolioScreen> {
                       ),
                     ),
                     Expanded(
-                      child: PortfolioDivisionWidget(portfolio.division),
+                      child: view == PortfolioView.PARTAKER
+                          ? PortfolioDivisionWidget(portfolio.division)
+                          : PortfolioExpensesWidget(portfolio.expenseAllocation),
                     ),
                   ],
                 ),

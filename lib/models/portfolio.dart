@@ -20,7 +20,6 @@ class Portfolio {
   List<ExpenseAllotmentPlan> get expenseAllocation =>
       [...expenseAllotmentPlans];
 
-  // TODO: implementation
   PortfolioDivision get division => PortfolioDivision(this);
 
   void splitExpense(Expense expense, List<Partaker> partakers) {

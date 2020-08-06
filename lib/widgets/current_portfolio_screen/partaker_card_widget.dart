@@ -31,8 +31,9 @@ class _PartakerCardWidgetState extends State<PartakerCardWidget> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
             side: BorderSide(
-                color: (Theme.of(context).primaryColor as MaterialColor)[500],
-                width: 3),
+              color: (Theme.of(context).primaryColor as MaterialColor)[500],
+              width: 3,
+            ),
           ),
           child: Column(
             children: <Widget>[

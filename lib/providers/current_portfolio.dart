@@ -25,6 +25,8 @@ class CurrentPortfolio with ChangeNotifier {
   List<Partaker> get partakers => portfolio.partakers;
   double get total => portfolio.total;
   PortfolioDivision get division => portfolio.division;
+  List<ExpenseAllotmentPlan> get expenseAllocation =>
+      portfolio.expenseAllocation;
 
   void splitExpense(Expense expense, List<Partaker> partakers) {
     portfolio.splitExpense(expense, partakers);
