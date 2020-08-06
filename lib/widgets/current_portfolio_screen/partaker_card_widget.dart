@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import './partaker_contribution_entry_widget.dart';
 import '../../models/portfolio_division.dart';
 
 class PartakerCardWidget extends StatefulWidget {
@@ -23,35 +24,7 @@ class _PartakerCardWidgetState extends State<PartakerCardWidget> {
           Column(
             children: <Widget>[
               SizedBox(height: 35),
-              Card(
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(30, 10, 55, 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      SizedBox(height: 15),
-                      ...widget.entry.contributions
-                          .map((e) => Container(
-                                padding: EdgeInsets.symmetric(vertical: 2),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: <Widget>[
-                                    Text(e.expense.name),
-                                    Text(e.amount.toStringAsFixed(2)),
-                                  ],
-                                ),
-                              ))
-                          .toList()
-                    ],
-                  ),
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.vertical(
-                      bottom: Radius.circular(10)), //.circular(10),
-                  side: BorderSide(color: Colors.teal[200], width: 3),
-                ),
-              ),
+              PartakerContributionEntryWidget(widget.entry),
             ],
           ),
         Card(
